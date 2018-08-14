@@ -22,7 +22,7 @@ read_input_data <- function(data, metadata){
 
   length_each <- sapply(Outcome[,"daily_stool_consistency"], length)
   Treat <- rep(Treatment, times = length_each)
-  
+
   length_each2 <- sapply(Outcome[,"promis_gi_symptoms"]$`t-score`, length)
   Treatment_weekly <- rep(Treatment, time = length_each2)
 
@@ -37,19 +37,19 @@ read_input_data <- function(data, metadata){
 }
 
 washout <- function(read_data){
-  
+
   with(read_data,{
-    
+
     change_point <- cumsum(rle(Treatment)$lengths)
     change_point <- change_point[-length(change_point)]
-    
+
     delete_obs_daily <- NULL
     for(i in 1:length(change_point)){
       delete_obs_daily <- c(delete_obs_daily, (change_point[i]+1):(change_point[i]+7))
     }
     delete_obs_daily
-    
-    
+
+
     change_point2 <- cumsum(rle(Treatment_weekly)$lengths)
     change_point2 <- change_point2[-length(change_point2)]
     delete_obs_weekly <- NULL
@@ -57,12 +57,12 @@ washout <- function(read_data){
       delete_obs_weekly <- c(delete_obs_weekly, (change_point2[i]+1))
     }
     delete_obs_weekly
-    
+
     stool_consistency[delete_obs_daily] <- NA
     stool_frequency[delete_obs_daily] <- NA
     pain_interference[delete_obs_weekly] <- NA
     gi_symptoms[delete_obs_weekly] <- NA
-    
+
     list(Treatment = Treatment, Treatment_weekly = Treatment_weekly, stool_consistency = stool_consistency, stool_frequency = stool_frequency, pain_interference = pain_interference, gi_symptoms = gi_symptoms)
   })
 }
@@ -114,25 +114,25 @@ round_number <- function(raw_mean, response){
 }
 
 transform_using_link <- function(coef, response){
-  
+
   coef_alpha <- coef_beta_A <- coef_beta_B <- NA
-  
+
   if("alpha" %in% colnames(coef)){
     coef_alpha <- coef[,"alpha", drop = F]
   }
-  
+
   if("beta_A" %in% colnames(coef)){
     coef_beta_A <- coef[,"beta_A", drop = F]
   }
-  
+
   if("beta_B" %in% colnames(coef)){
     coef_beta_B <- coef[,"beta_B",drop = F]
   }
-  
+
   base <- link_function(coef_alpha, response)
   scd <- link_function(coef_alpha + coef_beta_A, response)
   mscd <- link_function(coef_alpha + coef_beta_B, response)
-  
+
   return(list(base = base, scd = scd, mscd = mscd))
 }
 
@@ -140,9 +140,9 @@ transform_using_link <- function(coef, response){
 find_mean_difference <- function(coef, response, raw_mean){
 
   trans <- transform_using_link(coef, response)
-  
+
   mean_difference <- with(trans, {
-    c(base_vs_scd = mean(scd - base), base_vs_mscd = mean(mscd - base), mscd_vs_scd = mean(scd - mscd))  
+    c(base_vs_scd = mean(scd - base), base_vs_mscd = mean(mscd - base), mscd_vs_scd = mean(scd - mscd))
   })
 
   rounded <- round_number(mean_difference, response)
@@ -173,9 +173,9 @@ calculate_p_threshold <- function(coef, response){
     } else if(response == "normal"){
       -2.9
     }
-  
+
   trans <- transform_using_link(coef, response)
-  
+
   with(trans, {
 
   if("beta_A" %in% colnames(coef)){
@@ -205,7 +205,7 @@ calculate_p_threshold <- function(coef, response){
   }
 
   if("beta_A" %in% colnames(coef) & "beta_B" %in% colnames(coef)){
-    
+
     if(response == "normal"){
       mscd_vs_scd <- list(greater_than_threshold = round(mean(scd - mscd > upper, na.rm = TRUE)*100),
                            lower_than_threshold = round(mean(scd - mscd < lower, na.rm = TRUE)*100))
