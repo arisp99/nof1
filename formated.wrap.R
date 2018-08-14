@@ -5,8 +5,8 @@
 #ex: json.file <- fromJSON("NAME-OF-FILE.json")
 
 #Some packages needed for file to run
-#library(nof1)
-#library(jsonlite)
+library(nof1)
+library(jsonlite)
 
 #This function essentially reads in the data and changes the data that was entered binomially to contain only 0 and 1.
 formated_read_input <- function(data, metadata){

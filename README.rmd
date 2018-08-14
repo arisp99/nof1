@@ -2,7 +2,7 @@
 
 This repo is a based of another repo by MikeJSeo, which introduces a nof1 package that can be used to analyze nof1 studies. The goal in this repo is to take the package that was created and generalize it to work for any nof1 study.
 
-# To Install and Load the nof1 package
+# To Install and Load the original nof1 package
 
 ```{r}
 library(devtools)
@@ -10,15 +10,13 @@ install_github("MikeJSeo/nof1", force = TRUE)
 library(nof1)
 ```
 
-# Format of the input file
+# Format of the data file
 
 The file must contain two parts, the data section and the metadata section. The data section will contain all the observations taken during the trial. For each observation, we will have a list of the treatment the patient was on at the time followed by a list of all the data points collected. These two lists should be the same length. The metadata section will then contain the  user_id, the trigger, the design of the trial, whether or not a washout  period will be used (if not in metadata, default is TRUE), the alpha value for the confidence interval, the start and end  date (YYYY-MM-DD), followed by the response type of each of the observations. Either binomial, poisson, or normal. The response types must be in the same order as the observations in the data section and must be the last pieces of information in the metadata section. Refer to formated data.json and afib_formated.json for two examples.
 
 # Running general version
 
 ```{r}
-library(jsonlite)
-
 # Producing files
 json.file <- fromJSON("formated data.json")
 json.file2 <- fromJSON("afib_formated.json")
