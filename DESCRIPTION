@@ -1,13 +1,13 @@
 Package: nof1
 Type: Package
-Title: Single Subject (N-Of-1) Designs to Answer Patient-Identified Research Questions
+Title: Analysis of N of 1 Trials
 Version: 0.5.0
 Depends: R (>= 2.10)
-Imports: rjags (>= 4-6), splines, combinat, MASS, jsonlite, coda (>= 0.13)
+Imports: rjags (>= 4-6), splines, combinat, MASS, jsonlite, ggplot2, scales, coda (>= 0.13)
 Authors@R: c( 
 	person("Michael", "Seo", email = "michael_seo@brown.edu", role = c("aut", "cre")),
 	person("Christopher", "Schmid", email = "christopher_schmid@brown.edu", role = "aut"))
-Description: Using a series of N-of-1 trials to determine the effectiveness of the specific carbohydrate diet for an individual patient with inflammatory bowel disease
+Description: A package for running analysis for N of 1 study trials. Runs Bayesian linear regression, ordinal/logistic regression, and poisson regression. Includes different plots to visualize the results.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

@@ -1,9 +1,3 @@
-# simulation for testing purposes
-
-#' Ordinal simulation
-#'
-#' @export
-
 nof1.ordinal.simulation <- function(Base.size = 100, Treat.size = 100, alpha = 0, beta_A = -0.1, beta_B = -0.3, cut = c(0.5,1,1.5,2), ncat = 5){
   
   Treat <- rep("baseline", Base.size)
@@ -39,10 +33,6 @@ nof1.ordinal.simulation <- function(Base.size = 100, Treat.size = 100, alpha = 0
 }
 
 
-#' Binomial simulation
-#'
-#' @export
-
 nof1.binomial.simulation <- function(Base.size = 14, Treat.size = 56, alpha = 0.5, beta_A = -0.1, beta_B = -0.05){
   
   Treat <- rep("baseline", Base.size)
@@ -69,11 +59,6 @@ nof1.binomial.simulation <- function(Base.size = 14, Treat.size = 56, alpha = 0.
 }
 
 
-
-#' Poisson simulation
-#'
-#' @export
-
 nof1.poisson.simulation <- function(Base.size = 14, Treat.size = 56, alpha = 1, beta_A = -0.1, beta_B = -0.05){
 
   Treat <- rep("baseline", Base.size)
@@ -95,9 +80,6 @@ nof1.poisson.simulation <- function(Base.size = 14, Treat.size = 56, alpha = 1, 
   list(Y = Y, Treat = Treat)
 }
 
-#' Normal simulation
-#'
-#' @export
 
 nof1.normal.simulation <- function(Base.size = 2, Treat.size = 8, prec = 0.5, alpha = 50, beta_A = -3, beta_B = -1){
   

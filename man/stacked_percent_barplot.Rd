@@ -8,7 +8,15 @@ stacked_percent_barplot(nof1, title = NULL)
 }
 \arguments{
 \item{nof1}{nof1 object created using nof1.data}
+
+\item{title}{title name}
 }
 \description{
 Stacked_percent_barplot for raw data (for ordinal or binomial data)
+}
+\examples{
+Y <- laughter$Y
+Treat <- laughter$Treat
+nof1 <- nof1.data(Y, Treat, ncat = 11, baseline = "Usual Routine", response = "ordinal")
+stacked_percent_barplot(nof1)
 }

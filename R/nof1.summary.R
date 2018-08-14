@@ -1,25 +1,20 @@
 #' time series plot across different interventions
 #' 
 #' @param nof1 nof1 object created using nof1.data
+#' @param timestamp time of the nof1 event occurring
+#' @param timestamp.format format of the timestamp
+#' @param Outcomes.name used to label y-axis outcome variable
+#' @examples
+#' Y <- laughter$Y
+#' Treat <- laughter$Treat
+#' nof1 <- nof1.data(Y, Treat, ncat = 11, baseline = "Usual Routine", response = "ordinal")
+#' timestamp <- seq(as.Date('2015-01-01'),as.Date('2016-01-31'), length.out = length(Y))
+#' time_series_plot(nof1, timestamp = timestamp, timestamp.format = "%m-%d-%Y", Outcome.name = "Stress")
 #' @export
 
-time_series_plot2 <- function(nof1, time = NULL, timestamp = NULL, timestamp.format = "%m/%d/%Y %H:%M", Outcome.name = ""){
+time_series_plot <- function(nof1, time = NULL, timestamp = NULL, timestamp.format = "%m/%d/%Y %H:%M", Outcome.name = ""){
   
-  # if(!is.null(time)){
-  #   time_difference <- time
-  # } else if(is.null(timestamp)){
-  #   time_difference <- 1:length(nof1$Y)
-  # } else if(!is.null(timestamp)){
-  #   first_timestamp <- strptime(timestamp[1], timestamp.format)
-  #   
-  #   time_difference <- rep(NA, length(timestamp))
-  #   time_difference[1] <- 1 
-  #   for(i in 2:length(timestamp)){
-  #     second_timestamp <- strptime(timestamp[i], timestamp.format)
-  #     time_difference[i] <- round(1 + as.numeric(difftime(second_timestamp, first_timestamp, units = "days")))
-  #   }  
-  # }
-  
+
   date <- as.Date(timestamp, timestamp.format)
   
   data <- data.frame(Y = as.numeric(nof1$Y), Treatment = gsub("\\_", " ", nof1$Treat), date = date)
@@ -36,8 +31,15 @@ time_series_plot2 <- function(nof1, time = NULL, timestamp = NULL, timestamp.for
 
 
 #' Frequency plot for raw data
-#'
+#' 
 #' @param nof1 nof1 object created using nof1.data
+#' @param xlab x axis label
+#' @param title title name
+#' @examples
+#' Y <- laughter$Y
+#' Treat <- laughter$Treat
+#' nof1 <- nof1.data(Y, Treat, ncat = 11, baseline = "Usual Routine", response = "ordinal")
+#' frequency_plot(nof1)
 #' @export
 
 frequency_plot <- function(nof1, xlab = NULL, title = NULL){
@@ -54,6 +56,12 @@ frequency_plot <- function(nof1, xlab = NULL, title = NULL){
 #' Stacked_percent_barplot for raw data (for ordinal or binomial data)
 #'
 #' @param nof1 nof1 object created using nof1.data
+#' @param title title name
+#' @examples
+#' Y <- laughter$Y
+#' Treat <- laughter$Treat
+#' nof1 <- nof1.data(Y, Treat, ncat = 11, baseline = "Usual Routine", response = "ordinal")
+#' stacked_percent_barplot(nof1)
 #' @export
 
 stacked_percent_barplot <- function(nof1, title = NULL){
@@ -72,6 +80,11 @@ stacked_percent_barplot <- function(nof1, title = NULL){
 #' Summary data table for nof1
 #'
 #' @param nof1 nof1 object created using nof1.data
+#' @examples
+#' Y <- laughter$Y
+#' Treat <- laughter$Treat
+#' nof1 <- nof1.data(Y, Treat, ncat = 11, baseline = "Usual Routine", response = "ordinal")
+#' raw_table(nof1)
 #' @export
 
 raw_table <- function(nof1){
@@ -86,44 +99,6 @@ raw_table <- function(nof1){
 }
 
 
-#' Time series plot for the raw data
-#'
-#' Draw time series plot
-#'
-#' @param nof1 nof1 object created using nof1.data
-#' @param time can manually specify time variable
-#' @param timestamp or instead provide timestamp information for the all the outcomes
-#' @param timestamp.format format of timestamp used. See default format.
-#' @export
-
-time_series_plot <- function(nof1, time = NULL, timestamp = NULL, timestamp.format = "%m/%d/%Y %H:%M"){
-  
-  if(!is.null(time)){
-    time_difference <- time
-  } else if(is.null(timestamp)){
-    time_difference <- 1:length(nof1$Y)
-  } else if(!is.null(timestamp)){
-    first_timestamp <- strptime(timestamp[1], timestamp.format)
-    
-    time_difference <- rep(NA, length(timestamp))
-    time_difference[1] <- 1 
-    for(i in 2:length(timestamp)){
-      second_timestamp <- strptime(timestamp[i], timestamp.format)
-      time_difference[i] <- round(1 + as.numeric(difftime(second_timestamp, first_timestamp, units = "days")))
-    }  
-  } 
-  
-  data <- data.frame(Y = nof1$Y, Treat = nof1$Treat)
-  ggplot(data = data, aes(time_difference, Y, color = factor(Treat), group = 1)) + geom_point() + labs(x = "Time", y = "Outcomes", color = "Treatment") +  ylim(1, nof1$ncat) +  theme_bw()  
-}
-
-
-
-#' Kernel density of the posterior distribution for odds ratio
-#'
-#' @param result nof1 result object created using nof1.run
-#' @export
-
 kernel_plot <- function(result, xlim_value = c(0, 10), title = NULL){
   samples <- do.call(rbind, result$samples)
   beta_variable <- exp(samples[,grep("beta", colnames(samples))])
@@ -132,13 +107,6 @@ kernel_plot <- function(result, xlim_value = c(0, 10), title = NULL){
   ggplot(data, aes(beta_variable)) + geom_density() + theme_bw() + xlim(xlim_value[1], xlim_value[2]) + labs(title = title, x = "Odds Ratio", y = "Density") 
 }
 
-
-#' Odds ratio plot for the raw data
-#'
-#' @param result.list list of nof1 results created using nof1.run
-#' @param name of the outcomes. If left unspecified, it numbers each result in order of how it is stored in result.list
-#' @param level confidence interval level (default is 0.95)
-#' @export
 
 odds_ratio_plot <- function(result.list, result.name = NULL, level = 0.95, title = NULL){
   
@@ -172,11 +140,6 @@ odds_ratio_plot <- function(result.list, result.name = NULL, level = 0.95, title
     theme_bw()  
 }
 
-#' Plot showing probability certain treatment is better than the other one
-#'
-#' @param result.list list of nof1 results created using nof1.run
-#' @param result.name name of the outcomes. If left unspecified, it numbers each result in order of how it is stored in result.list
-#' @export
 
 probability_barplot <- function(result.list, result.name = NULL){
   

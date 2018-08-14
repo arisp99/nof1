@@ -1,8 +1,3 @@
-#' Generate initial values
-#'
-#' @param n.chains number of chains you want
-#' @export
-
 nof1.inits <- function(nof1, n.chains){
 
   response <- nof1$response

@@ -13,9 +13,6 @@ read_input_data2 <- function(data, metadata){
 }
 
 
-#' Summarizes the result from the model into json format
-#'
-#' @export
 
 find_raw_mean2 <- function(Y, Treat, baseline, response){
 
@@ -51,12 +48,6 @@ summarize_nof1_afib <- function(nof1, result){
     return(list(raw_mean = raw_mean, prob_afib_more_likely_with_trigger = greater_than_1))
   })
 }
-
-
-#' Wrapper function for afib study that runs the n-of-1 model
-#'
-#' @param json.file input json data
-#' @export
 
 wrap2 <- function(data, metadata){
 

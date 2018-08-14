@@ -1,8 +1,3 @@
-#' Read json data in as an R object
-#'
-#' @param data input data. see sample input.json in the github repo
-#' @param metadata metadata. see sample input.json in the github repo
-#' @export
 
 read_input_data <- function(data, metadata){
 
@@ -222,10 +217,6 @@ calculate_p_threshold <- function(coef, response){
   })
 }
 
-#' Summarizes the result from the model into json format
-#'
-#' @export
-
 summarize_nof1 <- function(nof1, result){
 
   with(c(nof1, result),{
@@ -247,11 +238,6 @@ summarize_nof1 <- function(nof1, result){
 }
 
 
-
-#' Wrapper function that runs the n-of-1 model
-#'
-#' @param json.file input json data
-#' @export
 
 wrap <- function(data, metadata){
 

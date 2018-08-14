@@ -1,13 +1,40 @@
-#' Run nof1 model
+#' Run the model using the nof1 object
+#' 
+#' This is the core function that runs the model in our program. Before running this function, we need to specify data, prior, 
+#' JAGS code, etc. using \code{\link{nof1.data}}.
 #'
-#' @param nof1 nof1 object created using nof1.data
+#' @param nof1 nof1 object created from \code{\link{nof1.data}} function
+#' @param inits Initial values for the parameters being sampled. If left unspecified, program will generate reasonable initial values.
+#' @param n.chains Number of chains to run
+#' @param max.run Maximum number of iterations that user is willing to run. If the algorithm is not converging, it will run up to \code{max.run} iterations before printing a message that it did not converge
+#' @param setsize Number of iterations that are run between convergence checks. If the algorithm converges fast, user wouldn't need a big setsize. The number that is printed between each convergence checks is the gelman-rubin diagnostics and we would want that to be below the conv.limit the user specifies.
+#' @param n.run Final number of iterations that the user wants to store. If after the algorithm converges, user wants less number of iterations, we thin the sequence. If the user wants more iterations, we run extra iterations to reach the specified number of runs
+#' @param conv.limit Convergence limit for Gelman and Rubin's convergence diagnostic.
+#' @param extra.pars.save Parameters that user wants to save besides the default parameters saved. See code using \code{cat(nof1$code)} to see which parameters can be saved.
+#' @return
+#' \item{nof1}{nof1 object}
+#' \item{inits}{Initial values that are either specified by the user or generated as a default}
+#' \item{pars.save}{Parameters that are saved. Add more parameters in extra.pars.save if other variables are desired}
+#' \item{data_rjags}{Data that is put into rjags function \code{jags.model}}
+#' \item{burnin}{Half of the converged sequence is thrown out as a burnin}
+#' \item{n.thin}{If the number of iterations user wants (n.run) is less than the number of converged sequence after burnin, we thin the sequence and store the thinning interval}
+#' \item{samples}{MCMC samples stored using jags. The returned samples have the form of mcmc.list and can be directly applied to coda functions}
+#' \item{max.gelman}{Maximum Gelman and Rubin's convergence diagnostic calculated for the final sample}
+#' @examples
+#' laughter
+#' Y <- laughter$Y
+#' Treat <- laughter$Treat
+#' nof1 <- nof1.data(Y, Treat, ncat = 11, baseline = "Usual Routine", response = "ordinal")
+#' result <- nof1.run(nof1)
+#' summary(result$samples)
 #' @export
+
 
 nof1.run <- function(nof1, inits = NULL, n.chains = 3, max.run = 100000, setsize = 10000, n.run = 50000,
                      conv.limit = 1.05, extra.pars.save = NULL){
 
   if (!inherits(nof1, "nof1.data")) {
-    stop('Given network is not nof1.data. Run nof1.data function first')
+    stop('Given object is not nof1.data. Run nof1.data function first')
   }
 
   if(max.run < setsize){

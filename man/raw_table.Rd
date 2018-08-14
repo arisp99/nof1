@@ -12,3 +12,9 @@ raw_table(nof1)
 \description{
 Summary data table for nof1
 }
+\examples{
+Y <- laughter$Y
+Treat <- laughter$Treat
+nof1 <- nof1.data(Y, Treat, ncat = 11, baseline = "Usual Routine", response = "ordinal")
+raw_table(nof1)
+}

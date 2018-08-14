@@ -2,20 +2,27 @@
 % Please edit documentation in R/nof1.summary.R
 \name{time_series_plot}
 \alias{time_series_plot}
-\title{Time series plot for the raw data}
+\title{time series plot across different interventions}
 \usage{
 time_series_plot(nof1, time = NULL, timestamp = NULL,
-  timestamp.format = "\%m/\%d/\%Y \%H:\%M")
+  timestamp.format = "\%m/\%d/\%Y \%H:\%M", Outcome.name = "")
 }
 \arguments{
 \item{nof1}{nof1 object created using nof1.data}
 
-\item{time}{can manually specify time variable}
+\item{timestamp}{time of the nof1 event occurring}
 
-\item{timestamp}{or instead provide timestamp information for the all the outcomes}
+\item{timestamp.format}{format of the timestamp}
 
-\item{timestamp.format}{format of timestamp used. See default format.}
+\item{Outcomes.name}{used to label y-axis outcome variable}
 }
 \description{
-Draw time series plot
+time series plot across different interventions
+}
+\examples{
+Y <- laughter$Y
+Treat <- laughter$Treat
+nof1 <- nof1.data(Y, Treat, ncat = 11, baseline = "Usual Routine", response = "ordinal")
+timestamp <- seq(as.Date('2015-01-01'),as.Date('2016-01-31'), length.out = length(Y))
+time_series_plot(nof1, timestamp = timestamp, timestamp.format = "\%m-\%d-\%Y", Outcome.name = "Stress")
 }
