@@ -12,7 +12,7 @@
     "trigger": "coffee",
     "design": "A",
     "washout": "FALSE",
-    "confidence": "0.1",
+    "confidence": "0.05",
     "trial_start_date": "2017-01-01",
     "trial_end_date": "2017-08-26",
     "afib_episode_yn": "binomial"
