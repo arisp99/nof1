@@ -18,11 +18,20 @@ The file must contain two parts, the data section and the metadata section. The 
 
 ```{r}
 # Producing files
-json.file <- fromJSON("formated data.json")
-json.file2 <- fromJSON("afib_formated.json")
+afib_form <- fromJSON("afib_formated.json")
+afib_form_no_var <- fromJSON("afib_no_variability_formated.json")
+diet_form <- fromJSON("diet_formated.json")
+diet_small <- fromJSON("diet_small_formated.json")
+no_mscd <- fromJSON("no_mscd_formated.json")
+no_scd <- fromJSON("no_scd_formated.json")
+
 
 # Run the file formated.wrap.R
-# Use the function gen_wrap to run the program
-gen_wrap(json.file$data, json.file$metadata)
-gen_wrap(json.file2$data, json.file2$metadata)
+# Use the function gen_wrap to run the model
+gen_wrap(afib_form$data, afib_form$metadata)
+gen_wrap(afib_form_no_var$data, afib_form_no_var$metadata)
+gen_wrap(diet_form$data, diet_form$metadata)
+gen_wrap(diet_small$data, diet_small$metadata)
+gen_wrap(no_mscd$data, no_mscd$metadata)
+gen_wrap(no_scd$data, no_scd$metadata)
 ```
