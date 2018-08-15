@@ -26,12 +26,27 @@ no_mscd <- fromJSON("no_mscd_formated.json")
 no_scd <- fromJSON("no_scd_formated.json")
 
 
+toJSON(result, pretty = TRUE, UTC = TRUE, auto_unbox = TRUE, na = NULL)
+
+
 # Run the file formated.wrap.R
 # Use the function gen_wrap to run the model
-gen_wrap(afib_form$data, afib_form$metadata)
-gen_wrap(afib_form_no_var$data, afib_form_no_var$metadata)
-gen_wrap(diet_form$data, diet_form$metadata)
-gen_wrap(diet_small$data, diet_small$metadata)
-gen_wrap(no_mscd$data, no_mscd$metadata)
-gen_wrap(no_scd$data, no_scd$metadata)
+result_afib <-gen_wrap(afib_form$data, afib_form$metadata)
+result_afib_var <-gen_wrap(afib_form_no_var$data, afib_form_no_var$metadata)
+result_diet <-gen_wrap(diet_form$data, diet_form$metadata)
+result_diet_small <-gen_wrap(diet_small$data, diet_small$metadata)
+result_no_mscd <-gen_wrap(no_mscd$data, no_mscd$metadata)
+result_no_scd <-gen_wrap(no_scd$data, no_scd$metadata)
+
+# Get the results in json format
+output_afib <- 
+  toJSON(result_afib, pretty = TRUE, UTC = TRUE, auto_unbox = TRUE, na = NULL)
+output_afib_var <-
+  toJSON(result_afib_var, pretty = TRUE, UTC = TRUE, auto_unbox = TRUE, na = NULL)
+output_diet <- 
+  toJSON(result_diet, pretty = TRUE, UTC = TRUE, auto_unbox = TRUE, na = NULL)
+output_no_mscd <- 
+  toJSON(result_no_mscd, pretty = TRUE, UTC = TRUE, auto_unbox = TRUE, na = NULL)
+output_no_scd <- 
+  toJSON(result_no_scd, pretty = TRUE, UTC = TRUE, auto_unbox = TRUE, na = NULL)
 ```

@@ -1,0 +1,33 @@
+{
+  "system_info": {
+    "enough_data": {
+      "afib_episode_yn": true
+    },
+    "user_id": 300000,
+    "trigger": "coffee",
+    "design": "A",
+    "timestap_completion": "2018-08-15 08:28:56",
+    "version_id": 1,
+    "version_date": "8/10/2018"
+  },
+  "model_results": {
+    "afib_episode_yn": {
+      "input_mean": [26, 37],
+      "input_median": [0, 0],
+      "treat_mean": [-1.0943, 0.368],
+      "treat_median": [-1.0723, 0.363],
+      "coef_mean": [-1.0943, 0.5223],
+      "coef_median": [-1.0723, 0.5143],
+      "treat_greater_zero": [0.0162, 1],
+      "coef_greater_zero": [0.0162, 0.7648],
+      "treat_confidence": [
+        [[-2.214], [-0.0893]],
+        [[0.1726], [0.59]]
+      ],
+      "coef_confidence": [
+        [[-2.214], [-0.0893]],
+        [[-0.8914], [1.9708]]
+      ]
+    }
+  }
+} 

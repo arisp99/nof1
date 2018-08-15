@@ -1,0 +1,90 @@
+{
+  "system_info": {
+    "enough_data": {
+      "daily_stool_consistency": true,
+      "daily_stool_frequency": true,
+      "promis_pain_interference": true,
+      "promis_gi_symptoms": true
+    },
+    "user_id": 300000,
+    "trigger": "diet",
+    "design": "A",
+    "timestap_completion": "2018-08-15 15:29:26",
+    "version_id": 1,
+    "version_date": "8/10/2018"
+  },
+  "model_results": {
+    "daily_stool_consistency": {
+      "input_mean": [79, 45],
+      "input_median": [100, 0],
+      "treat_mean": [1.432, 0.4467],
+      "treat_median": [1.3863, 0.446],
+      "coef_mean": [1.432, -1.65],
+      "coef_median": [1.3863, -1.6113],
+      "treat_greater_zero": [0.9874, 1],
+      "coef_greater_zero": [0.9874, 0.0088],
+      "treat_confidence": [
+        [[0.162], [2.9679]],
+        [[0.3197], [0.5779]]
+      ],
+      "coef_confidence": [
+        [[0.162], [2.9679]],
+        [[-3.2721], [-0.2649]]
+      ]
+    },
+    "daily_stool_frequency": {
+      "input_mean": [2.9, 2.3],
+      "input_median": [2.5, 2],
+      "treat_mean": [1.0354, 2.3223],
+      "treat_median": [1.0402, 2.3162],
+      "coef_mean": [1.0354, -0.1966],
+      "coef_median": [1.0402, -0.1995],
+      "treat_greater_zero": [1, 1],
+      "coef_greater_zero": [1, 0.1403],
+      "treat_confidence": [
+        [[0.7107], [1.3343]],
+        [[1.9412], [2.7394]]
+      ],
+      "coef_confidence": [
+        [[0.7107], [1.3343]],
+        [[-0.5442], [0.1691]]
+      ]
+    },
+    "promis_pain_interference": {
+      "input_mean": [49.5, 50.1],
+      "input_median": [49.5, 49.6],
+      "treat_mean": [49.4586, 50.0706],
+      "treat_median": [49.4652, 50.069],
+      "coef_mean": [49.4586, 0.612],
+      "coef_median": [49.4652, 0.604],
+      "treat_greater_zero": [1, 1],
+      "coef_greater_zero": [1, 0.7262],
+      "treat_confidence": [
+        [[47.4868], [51.4019]],
+        [[49.0997], [51.05]]
+      ],
+      "coef_confidence": [
+        [[47.4868], [51.4019]],
+        [[-1.5686], [2.8231]]
+      ]
+    },
+    "promis_gi_symptoms": {
+      "input_mean": [50.3, 49.7],
+      "input_median": [50.3, 50],
+      "treat_mean": [50.2692, 49.7185],
+      "treat_median": [50.2764, 49.7188],
+      "coef_mean": [50.2692, -0.5506],
+      "coef_median": [50.2764, -0.5593],
+      "treat_greater_zero": [1, 1],
+      "coef_greater_zero": [1, 0.2877],
+      "treat_confidence": [
+        [[48.352], [52.137]],
+        [[48.7608], [50.672]]
+      ],
+      "coef_confidence": [
+        [[48.352], [52.137]],
+        [[-2.6556], [1.5965]]
+      ]
+    }
+  }
+} 

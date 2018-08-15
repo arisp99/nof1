@@ -1,0 +1,52 @@
+{
+  "system_info": {
+    "enough_data": {
+      "afib_episode_yn": true
+    },
+    "user_id": 300000,
+    "trigger": "coffee",
+    "design": "A",
+    "timestap_completion": "2018-08-15 15:22:15",
+    "version_id": 1,
+    "version_date": "8/10/2018"
+  },
+  "model_results": {
+    "afib_episode_yn": {
+      "input_mean": [0, 0],
+      "input_median": [0, 0],
+      "treat_mean": [-30.7926, 0.0006],
+      "treat_median": [-27.6212, 1.2715e-17],
+      "coef_mean": [-30.7926, -12.3813],
+      "coef_median": [-27.6212, -10.5001],
+      "treat_greater_zero": [0, 1],
+      "coef_greater_zero": [0, 0.3243],
+      "treat_confidence": [
+        [[-75.186], [-4.7189]],
+        [[9.2843e-47], [0.0041]]
+      ],
+      "coef_confidence": [
+        [[-75.186], [-4.7189]],
+        [[-65.3483], [33.4812]]
+      ]
+    }
+  }
+} {
+  "data": [
+    {
+      "afib_episode_yn": {
+	"treatment": ["baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "baseline", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A"],
+	"result": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      }      
+    }
+  ],
+  "metadata": {
+    "user_id": 300000,
+    "trigger": "coffee",
+    "design": "A",
+    "washout": "FALSE",
+    "confidence": "0.05",
+    "trial_start_date": "2017-01-01",
+    "trial_end_date": "2017-08-26",
+    "afib_episode_yn": "binomial"
+  }
+}

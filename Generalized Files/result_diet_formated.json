@@ -1,0 +1,98 @@
+{
+  "system_info": {
+    "enough_data": {
+      "daily_stool_consistency": true,
+      "daily_stool_frequency": true,
+      "promis_pain_interference": true,
+      "promis_gi_symptoms": true
+    },
+    "user_id": 300000,
+    "trigger": "diet",
+    "design": "ABAB",
+    "timestap_completion": "2018-08-15 15:25:01",
+    "version_id": 1,
+    "version_date": "8/10/2018"
+  },
+  "model_results": {
+    "daily_stool_consistency": {
+      "input_mean": [79, 52, 62],
+      "input_median": [100, 100, 100],
+      "treat_mean": [1.4225, 0.5179, 0.6161],
+      "treat_median": [1.375, 0.5179, 0.6166],
+      "coef_mean": [1.4225, -1.3503, -0.9451],
+      "coef_median": [1.375, -1.3056, -0.9015],
+      "treat_greater_zero": [0.9898, 1, 1],
+      "coef_greater_zero": [0.9898, 0.0197, 0.085],
+      "treat_confidence": [
+        [[0.1864], [2.9318]],
+        [[0.426], [0.6096]],
+        [[0.5249], [0.7036]]
+      ],
+      "coef_confidence": [
+        [[0.1864], [2.9318]],
+        [[-2.8946], [-0.0524]],
+        [[-2.4927], [0.3513]]
+      ]
+    },
+    "daily_stool_frequency": {
+      "input_mean": [2.9, 2.6, 2.7],
+      "input_median": [2.5, 2, 2],
+      "treat_mean": [1.0394, 2.5631, 2.6516],
+      "treat_median": [1.0422, 2.5596, 2.6493],
+      "coef_mean": [1.0394, -0.1, -0.0659],
+      "coef_median": [1.0422, -0.1024, -0.0682],
+      "treat_greater_zero": [1, 1, 1],
+      "coef_greater_zero": [1, 0.2734, 0.3427],
+      "treat_confidence": [
+        [[0.7229], [1.3406]],
+        [[2.2745], [2.8685]],
+        [[2.3589], [2.962]]
+      ],
+      "coef_confidence": [
+        [[0.7229], [1.3406]],
+        [[-0.4237], [0.2375]],
+        [[-0.3888], [0.2678]]
+      ]
+    },
+    "promis_pain_interference": {
+      "input_mean": [49.5, 49.3, 47.1],
+      "input_median": [49.5, 49.1, 47],
+      "treat_mean": [49.4625, 49.2701, 47.0499],
+      "treat_median": [49.4663, 49.2698, 47.0495],
+      "coef_mean": [49.4625, -0.1924, -2.4126],
+      "coef_median": [49.4663, -0.193, -2.4179],
+      "treat_greater_zero": [1, 1, 1],
+      "coef_greater_zero": [1, 0.4273, 0.0138],
+      "treat_confidence": [
+        [[47.4492], [51.4615]],
+        [[48.5652], [49.9701]],
+        [[46.3436], [47.759]]
+      ],
+      "coef_confidence": [
+        [[47.4492], [51.4615]],
+        [[-2.3045], [1.932]],
+        [[-4.53], [-0.2756]]
+      ]
+    },
+    "promis_gi_symptoms": {
+      "input_mean": [50.3, 48.9, 46.9],
+      "input_median": [50.3, 48.6, 46.7],
+      "treat_mean": [50.2491, 48.8949, 46.9174],
+      "treat_median": [50.2539, 48.8955, 46.9174],
+      "coef_mean": [50.2491, -1.3542, -3.3318],
+      "coef_median": [50.2539, -1.3564, -3.3305],
+      "treat_greater_zero": [1, 1, 1],
+      "coef_greater_zero": [1, 0.1091, 0.0021],
+      "treat_confidence": [
+        [[48.1684], [52.32]],
+        [[48.1554], [49.6369]],
+        [[46.1763], [47.6589]]
+      ],
+      "coef_confidence": [
+        [[48.1684], [52.32]],
+        [[-3.5463], [0.855]],
+        [[-5.5195], [-1.1255]]
+      ]
+    }
+  }
+} 
