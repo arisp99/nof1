@@ -25,10 +25,6 @@ diet_small <- fromJSON("diet_small_formated.json")
 no_mscd <- fromJSON("no_mscd_formated.json")
 no_scd <- fromJSON("no_scd_formated.json")
 
-
-toJSON(result, pretty = TRUE, UTC = TRUE, auto_unbox = TRUE, na = NULL)
-
-
 # Run the file formated.wrap.R
 # Use the function gen_wrap to run the model
 result_afib <-gen_wrap(afib_form$data, afib_form$metadata)
@@ -49,4 +45,12 @@ output_no_mscd <-
   toJSON(result_no_mscd, pretty = TRUE, UTC = TRUE, auto_unbox = TRUE, na = NULL)
 output_no_scd <- 
   toJSON(result_no_scd, pretty = TRUE, UTC = TRUE, auto_unbox = TRUE, na = NULL)
+
+# Graphs can also be used to analyze the data. To do this, we need to run the nof1.summary.R file
+# In order to run the graphs, we need to feed in a object created by nof1.data
+# ex: (N.B. this will not work as variables not yet defined)
+nof1 <- nof1.data(Y, Treat, response = response_type)
+frequency_plot(nof1)
+stacked_percent_barplot(nof1)
+raw_table(nof1)
 ```
